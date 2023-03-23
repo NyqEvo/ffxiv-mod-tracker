@@ -23,7 +23,7 @@ const modSchema = new Schema({
     },
 
     archiveId: {
-        type: String
+        type: Number
     }
 });
 
