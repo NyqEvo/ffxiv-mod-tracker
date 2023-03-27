@@ -12,6 +12,32 @@ const resolvers = {
                 console.log('----userdata from resolvers: ', userData)
                 return userData
             }
+        },
+
+        singleMod: async (parent, { modId }) => {
+            const mod = await Mod.findOne({ modId: modId })
+
+            return mod
+        }
+    },
+
+    Mutation: {
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('No user found with this email');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect Credentials')
+            }
+
+            const token = signToken(user);
+
+            return { token, user };
         }
     }
 }
