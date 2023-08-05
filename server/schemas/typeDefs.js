@@ -20,7 +20,11 @@ type Auth {
     user: User
 }
 type Query {
-    me: User
+    me: User!
+    singleMod(archiveId: Int!): Mod!
+}
+type Mutation {
+    login(email: String!, password: String!): Auth 
 }
 input userInput {
     userId: String!

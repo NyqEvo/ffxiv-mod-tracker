@@ -14,8 +14,8 @@ const resolvers = {
             }
         },
 
-        singleMod: async (parent, { modId }) => {
-            const mod = await Mod.findOne({ modId: modId })
+        singleMod: async (parent, { archiveId }) => {
+            const mod = await Mod.findOne({ archiveId: archiveId })
 
             return mod
         }
